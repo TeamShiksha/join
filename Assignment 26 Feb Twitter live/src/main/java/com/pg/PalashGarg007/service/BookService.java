@@ -13,6 +13,9 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class BookService {
 	private static final String FILE_PATH = "books.json";
     private final ObjectMapper objectMapper = new ObjectMapper();
