@@ -321,8 +321,8 @@ export const books = [
   }
 ];
 
-// export const getUniqueGenres = (): string[] => {
-//   const genres = new Set < string > ();
-//   books.forEach(book => genres.add(book.genre));
-//   return Array.from(genres).sort();
-// };
+export const getUniqueGenres = () => {
+  const genres = new Set();
+  books.forEach(book => genres.add(book.genre));
+  return Array.from(genres).sort();
+};
