@@ -1,12 +1,3 @@
-/**
- * Parse search query string into conditions array
- * Examples: 
- * - "price>10" => [{ field: "price", operator: ">", value: 10 }]
- * - "pages>100 AND genre==Fantasy" => [{ field: "pages", operator: ">", value: 100 }, { field: "genre", operator: "==", value: "Fantasy" }]
- * 
- * @param {string} queryString - The search query string
- * @returns {Array} Array of search conditions
- */
 const parseSearchQuery = (queryString) => {
     if (!queryString) {
       return [];

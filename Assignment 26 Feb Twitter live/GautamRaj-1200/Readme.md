@@ -1,27 +1,215 @@
-# API Endpoints
+# Books API
 
-## Get All Books
+A RESTful API for managing a book collection with filtering, search, and statistics capabilities.
 
-- GET `http://localhost:3000/api/books` - Retrieves all books
-- GET `http://localhost:3000/api/books?genre=Fiction` - Filters books by genre
+## Base URL
 
-## Get Book by ID
+```
+https://teamshikshajoin.onrender.com
+```
 
-- GET `http://localhost:3000/api/books/:id` - Retrieves a specific book by ID
+## Endpoints
 
-## Add Book
+### Get All Books
+```
+GET /api/books
+```
 
-- POST `http://localhost:3000/api/books` - Adds a new book to the collection
+**Query Parameters:**
+- `genre` (optional): Filter books by genre (e.g., "Fiction", "Fantasy")
 
-## Update Rating
+**Example Response:**
+```json
+{
+  "success": true,
+  "count": 3,
+  "data": [
+    {
+      "id": "1",
+      "title": "To Kill a Mockingbird",
+      "author": "Harper Lee",
+      "genre": "Fiction",
+      "publicationDate": "1960-07-11",
+      "pages": 281,
+      "price": 12.99,
+      "rating": 4.8,
+      "isbn": "978-0061120084"
+    },
+    ...
+  ]
+}
+```
 
-- PATCH `http://localhost:3000/api/books/:id/rating` - Updates the rating of a book by ID
+### Get Book by ID
+```
+GET /api/books/:id
+```
 
-## Get Statistics
+**Example Response:**
+```json
+{
+  "success": true,
+  "data": {
+    "id": "1",
+    "title": "To Kill a Mockingbird",
+    "author": "Harper Lee",
+    "genre": "Fiction",
+    "publicationDate": "1960-07-11",
+    "pages": 281,
+    "price": 12.99,
+    "rating": 4.8,
+    "isbn": "978-0061120084"
+  }
+}
+```
 
-- GET `http://localhost:3000/api/books/statistics` - Returns statistics like average rating by genre, oldest/newest books
+### Add Book
+```
+POST /api/books
+```
 
-## Search Function
+**Request Body:**
+```json
+{
+  "title": "1984",
+  "author": "George Orwell",
+  "genre": "Dystopian",
+  "publicationDate": "1949-06-08",
+  "pages": 328,
+  "price": 10.99,
+  "rating": 4.7,
+  "isbn": "978-0451524935"
+}
+```
 
-- GET `http://localhost:3000/api/books/search?query=price>10&operator=OR` - Searches books with optional OR/AND filtering
-- GET `http://localhost:3000/api/books/search?query=pages>100 AND genre==Fantasy` - Complex search with multiple conditions
+**Example Response:**
+```json
+{
+  "success": true,
+  "data": {
+    "id": "6",
+    "title": "1984",
+    "author": "George Orwell",
+    "genre": "Dystopian",
+    "publicationDate": "1949-06-08",
+    "pages": 328,
+    "price": 10.99,
+    "rating": 4.7,
+    "isbn": "978-0451524935"
+  }
+}
+```
+
+### Update Rating
+```
+PATCH /api/books/:id/rating
+```
+
+**Request Body:**
+```json
+{
+  "rating": 4.9
+}
+```
+
+**Example Response:**
+```json
+{
+  "success": true,
+  "data": {
+    "id": "1",
+    "title": "To Kill a Mockingbird",
+    "author": "Harper Lee",
+    "genre": "Fiction",
+    "publicationDate": "1960-07-11",
+    "pages": 281,
+    "price": 12.99,
+    "rating": 4.9,
+    "isbn": "978-0061120084"
+  }
+}
+```
+
+### Get Statistics
+```
+GET /api/books/statistics
+```
+
+**Example Response:**
+```json
+{
+  "success": true,
+  "data": {
+    "totalBooks": 5,
+    "averageRating": "4.62",
+    "genreStats": {
+      "Fiction": {
+        "count": 2,
+        "totalRating": 9.0,
+        "averageRating": "4.50",
+        "averagePrice": "11.49",
+        "totalPrice": 22.98
+      },
+      "Dystopian": { ... },
+      "Fantasy": { ... },
+      "Non-fiction": { ... }
+    },
+    "oldestBook": {
+      "title": "The Great Gatsby",
+      "author": "F. Scott Fitzgerald",
+      "publicationDate": "1925-04-10"
+    },
+    "newestBook": {
+      "title": "Sapiens: A Brief History of Humankind",
+      "author": "Yuval Noah Harari",
+      "publicationDate": "2011-02-10"
+    }
+  }
+}
+```
+
+### Search Books
+```
+GET /api/books/search?query=price>10&operator=OR
+```
+
+**Query Parameters:**
+- `query` (required): Search criteria (e.g., "price>10", "pages>100 AND genre==Fantasy")
+- `operator` (optional): Logical operator for multiple conditions ("AND" or "OR", default is "AND")
+
+**Example Response:**
+```json
+{
+  "success": true,
+  "count": 3,
+  "data": [
+    {
+      "id": "1",
+      "title": "To Kill a Mockingbird",
+      "author": "Harper Lee",
+      "genre": "Fiction",
+      "publicationDate": "1960-07-11",
+      "pages": 281,
+      "price": 12.99,
+      "rating": 4.8,
+      "isbn": "978-0061120084"
+    },
+    ...
+  ]
+}
+```
+
+## Search Query Syntax
+
+The search functionality supports the following operators:
+- `==` Equal to
+- `>` Greater than
+- `<` Less than
+- `>=` Greater than or equal to
+- `<=` Less than or equal to
+- `contains` Contains substring (for text fields)
+
+**Examples:**
+- `price>10` - Books with price greater than 10
+- `pages>300 AND genre==Fiction` - Fiction books with more than 300 pages
+- `title contains Harry OR author contains Tolkien` - Books with "Harry" in the title or "Tolkien" as the author

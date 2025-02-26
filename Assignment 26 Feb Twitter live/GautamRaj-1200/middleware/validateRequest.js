@@ -1,9 +1,3 @@
-/**
- * Middleware for validating request data against a Joi schema
- * 
- * @param {Object} schema - Joi schema to validate against
- * @param {string} property - Request property to validate ('body', 'params', 'query')
- */
 const validateRequest = (schema, property = 'body') => {
     return (req, res, next) => {
       const { error } = schema.validate(req[property]);
