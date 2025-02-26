@@ -1,4 +1,4 @@
-[
+export const books = [
   {
     "id": "1",
     "title": "The Great Gatsby",
