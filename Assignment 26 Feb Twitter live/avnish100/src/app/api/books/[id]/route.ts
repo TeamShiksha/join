@@ -10,7 +10,7 @@ function readData(): Book[] {
   return JSON.parse(data)
 }
 
-export async function GET(request: Request, { params }: { params: { id: string } }) {
+export async function GET(request: Request, params:any) {
   try {
     const id = params.id
     const books = readData()

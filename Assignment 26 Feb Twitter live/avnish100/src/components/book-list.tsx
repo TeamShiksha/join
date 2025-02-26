@@ -99,7 +99,7 @@ export default function BookList() {
       setBooks((prevBooks) => [...prevBooks, addedBook])
 
       toast("Success",{
-        title: "Success",
+        description: "Success",
       })
     } catch (error) {
       console.error("Error adding book:", error)
@@ -132,7 +132,7 @@ export default function BookList() {
       )
 
       toast("Success",{
-        title: "Success",
+        description: "Success",
       })
     } catch (error) {
       console.error("Error updating rating:", error)

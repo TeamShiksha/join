@@ -14,7 +14,7 @@ function writeData(data: Book[]) {
   fs.writeFileSync(dataFilePath, JSON.stringify(data, null, 2))
 }
 
-export async function PATCH(request: Request, { params }: { params: { id: string } }) {
+export async function PATCH(request: Request, params:any) {
   try {
     const localparams = await params;
     const id =  localparams.id
