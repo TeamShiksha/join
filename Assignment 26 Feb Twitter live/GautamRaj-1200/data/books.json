@@ -1,0 +1,57 @@
+[
+    {
+      "id": "1",
+      "title": "To Kill a Mockingbird",
+      "author": "Harper Lee",
+      "genre": "Fiction",
+      "publicationDate": "1960-07-11",
+      "pages": 281,
+      "price": 12.99,
+      "rating": 4.8,
+      "isbn": "978-0061120084"
+    },
+    {
+      "id": "2",
+      "title": "1984",
+      "author": "George Orwell",
+      "genre": "Dystopian",
+      "publicationDate": "1949-06-08",
+      "pages": 328,
+      "price": 10.99,
+      "rating": 4.7,
+      "isbn": "978-0451524935"
+    },
+    {
+      "id": "3",
+      "title": "The Hobbit",
+      "author": "J.R.R. Tolkien",
+      "genre": "Fantasy",
+      "publicationDate": "1937-09-21",
+      "pages": 310,
+      "price": 14.99,
+      "rating": 4.9,
+      "isbn": "978-0618260300"
+    },
+    {
+      "id": "4",
+      "title": "Sapiens: A Brief History of Humankind",
+      "author": "Yuval Noah Harari",
+      "genre": "Non-fiction",
+      "publicationDate": "2011-02-10",
+      "pages": 443,
+      "price": 16.99,
+      "rating": 4.5,
+      "isbn": "978-0062316097"
+    },
+    {
+      "id": "5",
+      "title": "The Great Gatsby",
+      "author": "F. Scott Fitzgerald",
+      "genre": "Fiction",
+      "publicationDate": "1925-04-10",
+      "pages": 180,
+      "price": 9.99,
+      "rating": 4.2,
+      "isbn": "978-0743273565"
+    }
+  ]
