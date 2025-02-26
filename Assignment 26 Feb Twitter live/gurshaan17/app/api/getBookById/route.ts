@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import books from '../../../books.json';
+import books from '../../../../books.json';
 
 export async function GET(req: Request) {
     const { searchParams } = new URL(req.url);

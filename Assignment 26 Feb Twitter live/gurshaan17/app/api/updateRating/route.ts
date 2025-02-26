@@ -1,6 +1,6 @@
 // app/api/updateRating/route.ts
 import { NextResponse } from 'next/server';
-import books from '../../../books.json';
+import books from '../../../../books.json';
 
 export async function PUT(req: Request) {
     try {
