@@ -49,7 +49,7 @@ const updateBookRating = (id, rating) => {
 };
 
 const getStatistics = async () => {
-    let books = await readBooksFromFile();
+    let books =  readBooksFromFile();
     if (!books || books.length === 0) {
         return { message: "No books available for statistics" };
     }
