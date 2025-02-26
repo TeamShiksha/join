@@ -171,6 +171,57 @@ class BookControllerClass {
       });
     }
   }
+  async PriceFilter(req, res) {
+    try {
+      const {
+        firstPreference,
+        firstPreferenceValue,
+        secondPreference,
+        secondPreferenceValue,
+        filtertype,
+      } = req.body;
+      if (
+        !firstPreference ||
+        !firstPreferenceValue ||
+        !secondPreference ||
+        !secondPreferenceValue ||
+        !filtertype
+      ) {
+        return res.status(400).json({
+          success: false,
+          message: "All fields are required",
+        });
+      }
+      const filterData = BookData.filter((book) => {
+        if (filtertype.toLowerCase() === "or") {
+          return (
+            book.metadata[firstPreference] > firstPreferenceValue ||
+            book.metadata[secondPreference] > secondPreferenceValue
+          );
+        } else if (filtertype.toLowerCase() === "and") {
+          return (
+            book.metadata[firstPreference] > firstPreferenceValue &&
+            book.metadata[secondPreference] > secondPreferenceValue
+          );
+        } else {
+          return book;
+        }
+      });
+      return res.status(200).json({
+        success: true,
+        totalCount: filterData.length,
+        message: "Books filtered successfully",
+        data: filterData,
+      });
+    } catch (error) {
+      console.error("Error in PriceFilter", error);
+      return res.status(500).json({
+        success: false,
+        message: "Internal server error",
+        error: error.message,
+      });
+    }
+  }
 }
 const BookController = new BookControllerClass();
 export default BookController;

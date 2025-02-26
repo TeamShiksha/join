@@ -12,4 +12,5 @@ BooksRoute.put("/update-rating/:id", BookController.updateRating);
 
 BooksRoute.get("/statistics", BookController.statistics);
 
+BooksRoute.post("/additional-filter", BookController.PriceFilter);
 export default BooksRoute;
