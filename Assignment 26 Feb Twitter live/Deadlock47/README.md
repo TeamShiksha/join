@@ -1,5 +1,4 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
+[Live Link](https://tempteamsiksha-fs3bn2zhr-deadlock47s-projects.vercel.app/)
 ## Getting Started
 
 First, run the development server:
