@@ -1,0 +1,22 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL") // uses connection pooling
+  directUrl = env("DATABASE_URL_UNPOOLED") // uses a direct connection
+}
+model Book {
+  id            String  @id @default(cuid())
+  title         String
+  author        String
+  publicationYear Int
+  genre         String
+  rating        Float
+  price         Float?
+  pages         Int?
+}
