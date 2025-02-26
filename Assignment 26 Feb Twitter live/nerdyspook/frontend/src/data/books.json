@@ -85,12 +85,12 @@
     "author": "Aldous Huxley",
     "publicationYear": 1932,
     "genre": "Dystopian",
-    "rating": 4,
+    "rating": 4.0,
     "description": "A vision of a future society engineered for maximum happiness but at the cost of human freedom.",
     "metadata": {
       "pages": 288,
       "stockLeft": 12,
-      "price": 13.5,
+      "price": 13.50,
       "discount": 0,
       "edition": 2
     }
@@ -138,7 +138,7 @@
     "metadata": {
       "pages": 197,
       "stockLeft": 64,
-      "price": 16.5,
+      "price": 16.50,
       "discount": 10,
       "edition": 6
     }
@@ -234,7 +234,7 @@
     "metadata": {
       "pages": 384,
       "stockLeft": 41,
-      "price": 15,
+      "price": 15.00,
       "discount": 10,
       "edition": 4
     }
