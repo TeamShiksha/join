@@ -2,7 +2,8 @@
 
 Dead line 2 hours by 11:15 PM.
 
-Submit the PR after 11 PM to prevent others from copying your assignment.
+- Submit the PR after 11 PM to prevent others from copying your assignment.
+- If you have completed both frontend and backend, please go ahead and integrate the APIs.
 
 ## Frontend Development
 
