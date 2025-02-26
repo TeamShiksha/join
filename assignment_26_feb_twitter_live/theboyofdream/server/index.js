@@ -1,7 +1,9 @@
-import express from 'express';
-import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import express from 'express';
+import mongoose from 'mongoose';
+import * as path from 'path';
+import { fileURLToPath } from 'url';
 import { Book } from './models/Book.js';
 // import "./seed.js"
 
@@ -10,6 +12,8 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Middleware
 app.use(cors());
@@ -20,8 +24,13 @@ mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.error('MongoDB connection error:', err));
 
-// API Routes
+// Normal Routes
+app.use(express.static(path.join(__dirname,'../dist')))
+app.get('/', (_, res) => {
+  res.sendFile(path.join(__dirname, '../dist/index.html'))
+})
 
+// API Routes
 // Get all books with optional filtering
 app.get('/api/books', async (req, res) => {
   try {
