@@ -74,7 +74,6 @@ const updateBookRating = (req, res) => {
 const getStatistics = async (req, res) => {
     try {
         const stats = await bookService.getStatistics(); 
-        console.log("Statistics Response:", stats);
         res.json(stats);
     } catch (error) {
         console.error("Error in getStatistics:", error);

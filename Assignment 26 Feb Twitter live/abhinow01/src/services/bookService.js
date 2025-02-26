@@ -49,31 +49,37 @@ const updateBookRating = (id, rating) => {
 };
 
 const getStatistics = async () => {
-    let books =  readBooksFromFile();
-    if (!books || books.length === 0) {
-        return { message: "No books available for statistics" };
+    try {
+        let booksData = fs.readFileSync(path.join(__dirname, '../data/books.json'), 'utf-8');
+        let books = JSON.parse(booksData);
+
+        if (!Array.isArray(books) || books.length === 0) {
+            return { message: "No books available for statistics" };
+        }
+
+        const avgRatingByGenre = books.reduce((acc, book) => {
+            acc[book.genre] = acc[book.genre] || { sum: 0, count: 0 };
+            acc[book.genre].sum += book.rating;
+            acc[book.genre].count += 1;
+            return acc;
+        }, {});
+
+        for (const genre in avgRatingByGenre) {
+            avgRatingByGenre[genre] = (avgRatingByGenre[genre].sum / avgRatingByGenre[genre].count).toFixed(2);
+        }
+
+        const sortedByYear = books.sort((a, b) => a.publicationYear - b.publicationYear);
+
+        return {
+            averageRatingByGenre: avgRatingByGenre,
+            oldestBook: sortedByYear[0],
+            newestBook: sortedByYear[sortedByYear.length - 1]
+        };
+    } catch (error) {
+        console.error("Error reading books file:", error);
+        throw error;
     }
-
-    const avgRatingByGenre = books.reduce((acc, book) => {
-        acc[book.genre] = acc[book.genre] || { sum: 0, count: 0 };
-        acc[book.genre].sum += book.rating;
-        acc[book.genre].count += 1;
-        return acc;
-    }, {});
-
-    for (const genre in avgRatingByGenre) {
-        avgRatingByGenre[genre] = (avgRatingByGenre[genre].sum / avgRatingByGenre[genre].count).toFixed(2);
-    }
-
-    const sortedByYear = books.sort((a, b) => a.publicationYear - b.publicationYear);
-
-    return {
-        averageRatingByGenre: avgRatingByGenre,
-        oldestBook: sortedByYear[0],
-        newestBook: sortedByYear[sortedByYear.length - 1]
-    };
 };
-
 module.exports = {
     getAllBooks,
     getBookById,
