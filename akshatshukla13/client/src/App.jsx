@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/books';
+const API_URL = 'https://join-server-sandy.vercel.app/books';
 
 const App = () => {
   const [books, setBooks] = useState([]);
