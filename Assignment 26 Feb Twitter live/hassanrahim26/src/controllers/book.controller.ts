@@ -32,6 +32,7 @@ export const addBook = (req: Request, res: Response) => {
 };
 
 export const updateRating = (req: Request, res: Response) => {
+  console.log("here");
   const { id } = req.params;
   const { rating } = req.body;
 
@@ -40,7 +41,7 @@ export const updateRating = (req: Request, res: Response) => {
     return;
   }
 
-  const bookIndex = books.findIndex((book) => book.id === String(id));
+  const bookIndex = books.findIndex((book) => book.id === id);
   if (bookIndex === -1) {
     res.status(404).json({ message: "Book not found" });
     return;
