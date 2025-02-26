@@ -143,16 +143,16 @@ export default function Home() {
           </div>
 
           <div className="overflow-x-auto rounded-lg border border-gray-200 shadow-md">
-            <table className="w-full border-collapse bg-white text-left text-sm text-gray-700">
+            <table className="w-full border-collapse bg-white text-left text-sm text-gray-700 border border-gray-300">
               <thead className="bg-gray-100">
                 <tr>
-                  <th scope="col" className="px-4 py-3 font-medium text-gray-900 border-b">Title</th>
-                  <th scope="col" className="px-4 py-3 font-medium text-gray-900 border-b">Author</th>
-                  <th scope="col" className="px-4 py-3 font-medium text-gray-900 border-b">Year</th>
-                  <th scope="col" className="px-4 py-3 font-medium text-gray-900 border-b">Genre</th>
-                  <th scope="col" className="px-4 py-3 font-medium text-gray-900 border-b">Rating</th>
-                  <th scope="col" className="px-4 py-3 font-medium text-gray-900 border-b">Stock</th>
-                  <th scope="col" className="px-4 py-3 font-medium text-gray-900 border-b">Price</th>
+                  <th scope="col" className="px-4 py-3 font-medium text-gray-900 border-b border-gray-300">Title</th>
+                  <th scope="col" className="px-4 py-3 font-medium text-gray-900 border-b border-gray-300">Author</th>
+                  <th scope="col" className="px-4 py-3 font-medium text-gray-900 border-b border-gray-300">Year</th>
+                  <th scope="col" className="px-4 py-3 font-medium text-gray-900 border-b border-gray-300">Genre</th>
+                  <th scope="col" className="px-4 py-3 font-medium text-gray-900 border-b border-gray-300">Rating</th>
+                  <th scope="col" className="px-4 py-3 font-medium text-gray-900 border-b border-gray-300">Stock</th>
+                  <th scope="col" className="px-4 py-3 font-medium text-gray-900 border-b border-gray-300">Price</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
@@ -162,21 +162,21 @@ export default function Home() {
                       key={book.id} 
                       className={index % 2 === 0 ? "bg-white hover:bg-gray-50" : "bg-gray-50 hover:bg-gray-100"}
                     >
-                      <td className="px-4 py-3 font-medium text-gray-900">{book.title}</td>
-                      <td className="px-4 py-3">{book.author}</td>
-                      <td className="px-4 py-3">{book.publicationYear}</td>
-                      <td className="px-4 py-3">
+                      <td className="px-4 py-3 font-medium text-gray-900 border-b border-gray-300">{book.title}</td>
+                      <td className="px-4 py-3 border-b border-gray-300">{book.author}</td>
+                      <td className="px-4 py-3 border-b border-gray-300">{book.publicationYear}</td>
+                      <td className="px-4 py-3 border-b border-gray-300">
                         <span className="inline-flex items-center rounded-full bg-blue-100 px-2.5 py-0.5 text-xs font-medium text-blue-800">
                           {book.genre}
                         </span>
                       </td>
-                      <td className="px-4 py-3">
+                      <td className="px-4 py-3 border-b border-gray-300">
                         <div className="flex items-center">
                           <span className="mr-1">{book.rating}</span>
                           <span className="text-yellow-400">★</span>
                         </div>
                       </td>
-                      <td className="px-4 py-3">
+                      <td className="px-4 py-3 border-b border-gray-300">
                         <span className={`${
                           book.metadata.stockLeft > 10 
                             ? "text-green-600" 
@@ -187,7 +187,7 @@ export default function Home() {
                           {book.metadata.stockLeft}
                         </span>
                       </td>
-                      <td className="px-4 py-3 font-medium">${book.metadata.price.toFixed(2)}</td>
+                      <td className="px-4 py-3 font-medium border-b border-gray-300">${book.metadata.price.toFixed(2)}</td>
                     </tr>
                   ))
                 ) : (
