@@ -51,11 +51,16 @@ export default function Home() {
             value={genre}
           >
             <option value="">All Genres</option>
-            <option value="fiction">Fiction</option>
-            <option value="non-fiction">Non-Fiction</option>
-            <option value="fantasy">Fantasy</option>
-            <option value="science">Science</option>
-            {/* Add more genres as needed */}
+            <option value="Classic">Classic</option>
+            <option value="Fiction">Fiction</option>
+            <option value="Dystopian">Dystopian</option>
+            <option value="Fantasy">Fantasy</option>
+            <option value="Historical Fiction">Historical Fiction</option>
+            <option value="Post-Apocalyptic">Post-Apocalyptic</option>
+            <option value="Thriller">Thriller</option>
+            <option value="Science Fiction">Science Fiction</option>
+            <option value="Non-Fiction">Non-fiction</option>
+            <option value="Memoir">Memoir</option>
           </select>
           <input
             type="number"
@@ -69,7 +74,7 @@ export default function Home() {
           />
         </div>
       </div>
-      <div className="w-full h-full p-3 flex justify-center flex-wrap gap-3 flex-row">
+      <div className="w-full h-full p-3 flex  flex-wrap gap-3 flex-row">
         {sortedBooks.map((book, index) => (
           <Item book_id={book.id} key={index} />
         ))}

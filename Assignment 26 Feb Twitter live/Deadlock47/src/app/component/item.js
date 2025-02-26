@@ -10,10 +10,12 @@ function Item({book_id}) {
         setCurrentBook(book);
     }, [book_id]);
 return (
-    <div className='flex justify-center h-fit w-[calc(320px)] items-center bg-neutral-900 text-white'>
+    <div className='flex justify-center h-auto w-[calc(360px)] items-center  text-white'>
         {
             currentBook ? (
-                <div className='w-full bg-gray-800 rounded-lg shadow-md p-6'>
+                <div className='w-full flex justify-between flex-col h-full bg-gray-800 rounded-lg shadow-md p-6'>
+                    <div>
+
                     <h1 className='font-bold text-3xl mb-2'>{currentBook.title}</h1>
                     <h2 className='text-xl text-gray-400 mb-4'>- {currentBook.author}</h2>
                     <p className='italic text-gray-300 mb-4'>{currentBook.description}</p>
@@ -26,11 +28,14 @@ return (
                         <p className='text-gray-300'><span className='font-semibold'>Stock Left:</span> {currentBook.metadata.stockLeft}</p>
                         <p className='text-gray-300'><span className='font-semibold'>Discount:</span> {currentBook.metadata.discount}</p>
                         <p className='text-gray-300'><span className='font-semibold'>Edition:</span> {currentBook.metadata.edition}</p>
-                        <p className='text-gray-800 p-2 bg-white w-fit rounded-xl '><span className='font-semibold'>Price:</span> ${currentBook.metadata.price}</p>
+                    </div>
+                    </div>
+                    <div className=' relative bottom-0 pt-3'>
+                        <p className='text-gray-800 p-2 bg-white w-full text-center rounded-xl '><span className='font-semibold'>Price:</span> ${currentBook.metadata.price}</p>
                     </div>
                 </div>
             ) : (
-                <p className='text-gray-500'>Book not found</p>
+                <p className='text-gray-500'>Loading...</p>
             )
         }
     </div>
