@@ -7,9 +7,9 @@ interface Book {
   id?: number;
   title: string;
   author: string;
-  publicationYear: string;
+  publicationYear: number;
   genre: string;
-  rating: string;
+  rating: number;
 }
 
 export default function BookLibrary() {
@@ -21,9 +21,9 @@ export default function BookLibrary() {
   const [newBook, setNewBook] = useState<Book>({
     title: "",
     author: "",
-    publicationYear: "0",
+    publicationYear: 0,
     genre: "",
-    rating: "0",
+    rating: 0,
   });
 
   const fetchBooks = useCallback(async () => {
@@ -50,9 +50,9 @@ export default function BookLibrary() {
     setNewBook({
       title: "",
       author: "",
-      publicationYear: "0",
+      publicationYear: 0,
       genre: "",
-      rating: "0",
+      rating: 0,
     });
     fetchBooks();
   };
@@ -136,7 +136,7 @@ export default function BookLibrary() {
           onChange={(e) =>
             setNewBook({
               ...newBook,
-              publicationYear: e.target.value.replace(/\D/, ""),
+              publicationYear: Number(e.target.value.replace(/\D/, "")),
             })
           }
           className="border p-2 block w-full text-black"
@@ -153,7 +153,7 @@ export default function BookLibrary() {
           placeholder="Rating"
           value={newBook.rating}
           onChange={(e) =>
-            setNewBook({ ...newBook, rating: e.target.value.replace(/\D/, "") })
+            setNewBook({ ...newBook, rating: Number(e.target.value.replace(/\D/, "")) })
           }
           className="border p-2 block w-full text-black"
         />
