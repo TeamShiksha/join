@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Book } from '../types';
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = '/api';
 
 // Create axios instance
 const api = axios.create({
