@@ -10,7 +10,7 @@ function Item({book_id}) {
         setCurrentBook(book);
     }, [book_id]);
 return (
-    <div className='flex justify-center h-auto w-[calc(360px)] items-center  text-white'>
+    <div className='flex justify-center h-auto w-[calc(350px)] items-center  text-white'>
         {
             currentBook ? (
                 <div className='w-full flex justify-between flex-col h-full bg-gray-800 rounded-lg shadow-md p-6'>
