@@ -26,12 +26,12 @@ public class BookController {
         this.bookService = bookService;
     }
 
-    @GetMapping("/getAllBooks/{genre}")
+    @GetMapping("/getAllBooks/genere={genre}")
     public List<Book> getAllBooks(@PathVariable(required = false) String genre) {
         return bookService.getAllBooks(genre);
     }
     
-    @GetMapping("/getBookById/{id}")
+    @GetMapping("/getBookById/id={id}")
     public Book getBookById(@PathVariable(required = false) String id) {
         return bookService.getBookById(id);
     }
@@ -52,14 +52,10 @@ public class BookController {
     		@RequestParam double rating)
     {
         boolean updated = bookService.updateBookRating(id, rating);
-        if (updated) {
-            return new ResponseEntity<>("Book rating updated successfully!", HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(
-            		"Book not found!", 
-            		HttpStatus.NOT_FOUND
-            );
-        }
+        
+        return (updated) ? 
+        		new ResponseEntity<>("Book rating updated successfully!", HttpStatus.OK) : 
+        		new ResponseEntity<>("Book not found!", HttpStatus.NOT_FOUND);
     }
     
     @GetMapping("/statistics")

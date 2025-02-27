@@ -38,4 +38,3 @@ public class Book {
     public void setMetadata(Metadata metadata) { this.metadata = metadata; }
 
 }
-
