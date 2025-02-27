@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class BookService {
-	private static final String FILE_PATH = "books.json";
+	private static final String FILE_PATH = new File("").getAbsolutePath() + "/books.json";
     private final ObjectMapper objectMapper = new ObjectMapper();
     
     public List<Book> getAllBooks(String genre) {
