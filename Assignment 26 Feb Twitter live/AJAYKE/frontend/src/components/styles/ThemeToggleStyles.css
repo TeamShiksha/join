@@ -1,0 +1,36 @@
+.theme-toggle {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #009879;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.theme-toggle:hover {
+  background-color: #007f67;
+}
+
+body.dark {
+  background-color: #333;
+  color: #f0f0f0;
+}
+
+body.dark .app {
+  background-color: #444;
+}
+
+body.dark h1 {
+  color: #f0f0f0;
+}
+
+body.dark .filter-bar select,
+body.dark .filter-bar input,
+body.dark .sort-controls select,
+body.dark .sort-controls label,
+body.dark .book-list table {
+  background-color: #555;
+  color: #f0f0f0;
+  border-color: #666;
+}
