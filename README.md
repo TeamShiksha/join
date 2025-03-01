@@ -1,7 +1,7 @@
 ## Join
 A Growth Community For Everyone Who Wants To Learn.
 
-Assignments for joining the [Team.shiksha](https://team.shiksha) projects can be found [here](./Assignment%2012%20Jan%20Twitter%20live/commit.7z).
+Assignments for joining the [Team.shiksha](https://team.shiksha) projects can be found [here](./Assignment%2026%20Feb%20Twitter%20live//ASSIGNMENT.md).
 
 ## How to work and submit
 
