@@ -1,0 +1,30 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+  background-color: #f0f0f0;
+  font-family: Arial, sans-serif;
+  gap: 10px;
+  width: inherit;
+}
+
+h1 {
+  color: #333;
+}
+
+form,
+.filter-bar,
+.sort-controls,
+.book-list {
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 20px;
+}
+
+.book-list {
+  width: 100%;
+  max-width: 800px;
+}
