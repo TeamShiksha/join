@@ -1,0 +1,23 @@
+.filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.filter-bar select,
+.filter-bar input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: #f9f9f9;
+  cursor: pointer;
+  color: black;
+}
+
+.filter-bar select:focus,
+.filter-bar input:focus {
+  border-color: #009879;
+  outline: none;
+}
