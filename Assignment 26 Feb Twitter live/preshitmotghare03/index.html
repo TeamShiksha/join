@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Library</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Book Library</h1>
+        <button id="theme-toggle">Toggle Dark/Light Mode</button>
+    </header>
+
+    <section id="filters">
+        <label for="genre">Filter by Genre:</label>
+        <select id="genre">
+            <option value="all">All</option>
+        </select>
+
+        <label for="min-rating">Min Rating:</label>
+        <input type="number" id="min-rating" min="0" max="5" step="0.1" value="0">
+
+        <button id="apply-filters">Apply</button>
+    </section>
+
+    <section id="sort-options">
+        <label for="sort">Sort by:</label>
+        <select id="sort">
+            <option value="title">Title</option>
+            <option value="author">Author</option>
+            <option value="publicationYear">Publication Year</option>
+        </select>
+        <button id="apply-sort">Sort</button>
+    </section>
+
+    <section id="book-list">
+        <!-- Books will be dynamically added here -->
+    </section>
+
+    <section id="add-book-form">
+        <h1>Submit a Book</h1>
+        <form id="bookForm">
+            <div class="form-group">
+                <label for="title">Book Title</label>
+                <input type="text" id="title" name="title" required>
+            </div>
+
+            <div class="form-group">
+                <label for="author">Author</label>
+                <input type="text" id="author" name="author" required>
+            </div>
+
+            <div class="form-group">
+                <label for="year">Publication Year</label>
+                <input type="number" id="year" name="year" required>
+            </div>
+
+            <div class="form-group">
+                <label for="genre">Genre</label>
+                <input type="text" id="genre" name="genre" required>
+            </div>
+
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
