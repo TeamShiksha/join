@@ -1,10 +1,11 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios, { AxiosError } from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store/store";
 import { fetchImagesStart, fetchImagesSuccess } from "../../store/slices/imageSlices";
 import toast, { Toaster } from "react-hot-toast";
 import Placeholder from "../../components/Placeholder";
+import { FiSearch } from 'react-icons/fi';
 
 import Appheader from "../../components/Appheader";
 import ImageList from "../../components/ImagesList";
@@ -72,70 +73,59 @@ const Search: React.FC = () => {
   console.log(images);
 
   return (
-    <div className="h-screen">
+    <div className="min-h-screen bg-gray-50">
       <Toaster position="top-center" reverseOrder={false} />
       <Appheader />
 
-      <div
-        className="grid
-  grid-cols-1
-  mr-10
-  ml-10
- md:mr-[20%]
- md:ml-[20%]
- lg:mr-[30%]
- lg:ml-[30%]
- 
- "
-      >
-        <input
-          type="text"
-          className="w-full
-    mt-[20%]
-    shadow-xl
-    placeholder:text-center 
-    text-blue
-    active:border-sky-100
-    focus:border-sky-300
-    border
-    border-sky-100
-    p-4
-    rounded-md
-    "
-    value={inputSearch} 
-        onChange={handleSearchChange}
+      {/* Search Section */}
+      <div className="max-w-4xl mx-auto px-4 py-8">
+        <div className="relative">
+          <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+            <FiSearch className="h-5 w-5 text-gray-400" />
+          </div>
+          <input
+            type="text"
+            className="block w-full pl-12 pr-4 py-4 text-gray-900 placeholder-gray-500 
+                     bg-white border border-gray-300 rounded-xl 
+                     shadow-sm focus:outline-none focus:ring-2 
+                     focus:ring-purple-500 focus:border-transparent
+                     transition duration-200 ease-in-out"
+            value={inputSearch}
+            onChange={handleSearchChange}
+            placeholder="Search your images..."
+          />
+        </div>
 
-          placeholder="Search Images"
-        />
-
-
-
-
+        {/* Search Stats */}
+        {searchedResults.length > 0 && (
+          <div className="mt-4 text-sm text-gray-600">
+            Found {searchedResults.length} {searchedResults.length === 1 ? 'result' : 'results'}
+          </div>
+        )}
       </div>
 
+      {/* Content Section */}
+      {!(images.length > 0) ? (
+        <div className="mt-8">
+          <Placeholder />
+        </div>
+      ) : (
+        <div className="max-w-7xl mx-auto px-4 py-8">
+          <div className="grid grid-cols-1 gap-8">
+            <ImageList Images={searchedResults.length > 0 ? searchedResults : images} />
+          </div>
+        </div>
+      )}
 
-
-
-      {!(images.length> 0)? 
-      <Placeholder />:
-
-      <div
-      className="
-      mt-10
-      flex
-      justify-center
-      mr-[10%]
-      ml-[10%]
-
-      "
-      >
-      
-      <ImageList Images={searchedResults.length > 0 ? searchedResults : images} />
-
-      </div>
-
-      
-    }
+      {/* No Results Message */}
+      {searchedResults.length === 0 && inputSearch !== '' && (
+        <div className="text-center py-12">
+          <div className="text-gray-500">
+            <div className="text-xl font-medium">No results found</div>
+            <p className="mt-2">Try adjusting your search terms</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
