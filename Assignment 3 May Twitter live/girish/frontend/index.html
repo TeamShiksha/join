@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Processor</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Image Processor</h1>
+            <p>Upload images and convert them to 512x512</p>
+        </header>
+        
+        <section class="upload-section">
+            <h2>Upload a New Image</h2>
+            <form id="upload-form">
+                <div class="file-input-container">
+                    <input type="file" id="image-input" accept="image/*" required>
+                    <label for="image-input" id="file-label">Choose an image</label>
+                    <span id="file-name">No file chosen</span>
+                </div>
+                <button type="submit" id="upload-button">Upload & Process</button>
+            </form>
+            <div id="upload-progress" class="hidden">
+                <div class="loader"></div>
+                <p>Processing your image...</p>
+            </div>
+            <div id="upload-success" class="hidden">
+                <p>Image uploaded and processed successfully!</p>
+            </div>
+            <div id="upload-error" class="hidden">
+                <p>Error processing image. Please try again.</p>
+            </div>
+        </section>
+        
+        <section class="gallery-section">
+            <h2>Your Images</h2>
+            <div id="images-container">
+                <!-- Images will be displayed here -->
+                <p id="no-images" class="text-center">No images uploaded yet.</p>
+            </div>
+            <div class="pagination">
+                <button id="prev-page" disabled>Previous</button>
+                <span id="page-info">Page 1</span>
+                <button id="next-page" disabled>Next</button>
+            </div>
+        </section>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
