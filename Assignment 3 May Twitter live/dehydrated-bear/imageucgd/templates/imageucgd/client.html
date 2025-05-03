@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Image Processor</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
+  <div class="bg-white p-6 rounded-xl shadow-xl w-full max-w-xl space-y-6">
+    <h1 class="text-3xl font-bold text-center text-gray-800">Image Processor </h1>
+
+    <form id="uploadForm" class="space-y-4">
+      <input type="file" id="imageFile" name="image" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100" />
+      <button type="submit" class="w-full bg-indigo-600 text-white py-2 rounded-lg font-medium hover:bg-indigo-700 transition">
+        Upload Image
+      </button>
+    </form>
+
+    <div id="uploadedImages" class="space-y-2">
+      <h2 class="text-lg font-semibold text-gray-700">Your Uploaded Images</h2>
+      <ul id="imageList" class="list-disc list-inside text-gray-600 text-sm space-y-1"></ul>
+    </div>
+
+    <div id="downloadArea" class="hidden">
+  <a id="downloadLink" class="text-blue-500 underline" target="_blank">Download Converted Image</a>
+</div>
+
+  </div>
+
+  <script>
+  const uploadForm = document.getElementById("uploadForm");
+  const imageList = document.getElementById("imageList");
+  const downloadArea = document.getElementById("downloadArea");
+  const downloadLink = document.getElementById("downloadLink");
+
+  uploadForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const fileInput = document.getElementById("imageFile");
+    const formData = new FormData();
+    formData.append("image", fileInput.files[0]);
+
+    console.log("Uploading image...");
+
+    const uploadRes = await fetch("/api/images/upload/", {
+      method: "POST",
+      body: formData,
+    });
+
+    if (uploadRes.ok) {
+      const uploaded = await uploadRes.json();
+      const pk = uploaded.id;
+      console.log("Uploaded successfully with ID:", pk);
+
+      const li = document.createElement("li");
+      li.textContent = `Image #${pk}`;
+      imageList.appendChild(li);
+
+      console.log("Sending request to convert...");
+
+      const convertRes = await fetch(`/api/images/convert/${pk}/`, {
+        method: "PATCH",
+      });
+
+      if (convertRes.ok) {
+        console.log("Conversion successful!");
+
+        // Show download link
+        downloadLink.href = `/api/images/download/${pk}/`;
+        downloadLink.textContent = "Download Converted Image";
+        downloadArea.classList.remove("hidden");
+      } else {
+        console.error("Conversion failed:", await convertRes.text());
+      }
+    } else {
+      console.error("Upload failed:", await uploadRes.text());
+    }
+  });
+</script>
+
+</body>
+</html>
