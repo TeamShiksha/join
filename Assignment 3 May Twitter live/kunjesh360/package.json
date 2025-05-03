@@ -1,0 +1,24 @@
+{
+  "name": "kunjesh360",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@prisma/client": "^6.7.0",
+    "axios": "^1.9.0",
+    "cloudinary": "^2.6.0",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "multer": "^1.4.5-lts.2",
+    "nodemon": "^3.1.10",
+    "prisma": "^6.7.0",
+    "sharp": "^0.34.1"
+  }
+}
