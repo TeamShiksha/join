@@ -1,0 +1,19 @@
+{
+  "name": "azeemuddinaziz",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "express": "^5.1.0",
+    "multer": "^1.4.5-lts.2",
+    "sharp": "^0.34.1"
+  }
+}

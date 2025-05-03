@@ -1,0 +1,4 @@
+- ExpressJS Documentation: https://expressjs.com/en/
+- Medium Article to upload and save images: https://medium.com/@livajorge7/a-comprehensive-guide-to-uploading-and-saving-images-with-node-js-express-js-and-javascript-69137e227c4d
+- Express static file rendering: https://expressjs.com/en/starter/static-files.html
+- Dev article for Tests: https://dev.to/ghostaram/testing-express-api-routes-the-easy-way-beginners-guide-1mmi
