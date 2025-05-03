@@ -11,6 +11,7 @@ This project comprises a frontend and backend application for image storage and 
     * Base64 encoding before sending to the backend
     * Display of uploaded image URL
     * Error Handling
+    * converting to 512*512 resizing
 * **Setup Instructions (For Development - if applicable):**
     1.  Clone the repository.
     2.  Navigate to the `frontend` directory: `cd frontend`
