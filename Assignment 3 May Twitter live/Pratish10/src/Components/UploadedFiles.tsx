@@ -1,3 +1,5 @@
+import { Button } from "./ui/button";
+
 interface UploadedFilesProps {
   uploadFiles: { name: string; url: string }[];
 }
@@ -67,12 +69,9 @@ export const UploadedFiles = ({ uploadFiles }: UploadedFilesProps) => {
                 )}
                 <p className="text-sm text-gray-700 truncate">{file.name}</p>
                 {file.url && (
-                  <button
-                    onClick={() => handleDownload(file)}
-                    className="text-blue-600 text-sm underline hover:text-blue-800"
-                  >
+                  <Button onClick={() => handleDownload(file)}>
                     Download 512x512
-                  </button>
+                  </Button>
                 )}
               </div>
             ))}
