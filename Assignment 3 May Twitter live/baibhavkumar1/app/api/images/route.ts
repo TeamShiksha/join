@@ -21,7 +21,7 @@ export const GET = withErrorHandler(async (request: NextRequest) => {
     // Validate pagination parameters
     const paginationError = validatePagination(page, limit);
     if (paginationError) {
-        return NextResponse.json(paginationError, { status: paginationError.status });
+        return NextResponse.json(paginationError, { status: paginationError.error.status });
     }
 
     // Add search validation
