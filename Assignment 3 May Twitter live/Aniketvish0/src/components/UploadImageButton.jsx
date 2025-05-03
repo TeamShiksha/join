@@ -8,7 +8,7 @@ const UploadImageButton = () => {
   const handleUploadImage = async () => {
     const input = document.createElement("input");
     input.type = "file";
-    input.accept = "image/*,.tif,.tiff";
+    input.accept = "image/jpg,image/png,image/jpeg,image/tif,image/tiff";
     input.onchange = async (event) => {
       const file = event.target.files?.[0]; 
       if (file) {

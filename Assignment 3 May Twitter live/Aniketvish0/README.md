@@ -1,12 +1,17 @@
-# React + Vite
+# Team-siksha Assignment (Frontend) 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+I Made the image parser which converts the image into 512x512 size
 
-Currently, two official plugins are available:
+Tech stack used - React, Tailwind css
+### This is the Home Page 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+ ![alt text](public/images/Homeimage.png)
 
-## Expanding the ESLint configuration
+ You can add the images in png, jpg, jpeg extension
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+For some reason .tif images are not working
+
+Used Context Api for managing the state of the images
+
+### These are the uploaded and processed images you user can download
+![alt text](public/images/Galleryimage.png)
