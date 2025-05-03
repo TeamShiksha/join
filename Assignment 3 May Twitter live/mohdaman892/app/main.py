@@ -1,9 +1,17 @@
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.responses import FileResponse
+from fastapi.middleware.cors import CORSMiddleware
 from PIL import Image
 import os
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # ← You can restrict this later
+    allow_credentials=True,
+    allow_headers=["*"],
+)
 
 UPLOAD_DIR = "uploads"
 CONVERTED_DIR = "converted"
