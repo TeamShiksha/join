@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+:root {
+  --background: 255 255 255; /* white */
+  --foreground: 0 0 0; /* black */
+  --muted: 245 245 245; /* neutral-100 */
+  --muted-foreground: 115 115 115; /* neutral-600 */
+  --primary: 59 130 246; /* blue-500 */
+  --primary-foreground: 255 255 255; /* white */
+  --border: 229 229 229; /* neutral-200 */
+}
+
+.dark {
+  --background: 18 18 18; /* #121212 */
+  --foreground: 255 255 255; /* white */
+  --muted: 38 38 38; /* neutral-800 */
+  --muted-foreground: 163 163 163; /* neutral-400 */
+  --primary: 96 165 250; /* blue-400 */
+  --primary-foreground: 255 255 255; /* white */
+  --border: 64 64 64; /* neutral-700 */
+}
+
+
