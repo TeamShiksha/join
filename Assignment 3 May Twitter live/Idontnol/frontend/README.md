@@ -6,8 +6,6 @@ This project comprises a frontend and backend application for image storage and 
 
 * **Description:** The frontend is a React application that provides a user interface for uploading images. It allows users to select an image, sends it to the backend, and displays the uploaded image URL.
 * **Technologies:** React, JavaScript, HTML, CSS
-* **Deployment:** Deployed on Netlify.
-* **Frontend URL:** [https://imagestorer.netlify.app/](https://imagestorer.netlify.app/)
 * **Key Features**
     * Image selection and preview
     * Base64 encoding before sending to the backend
