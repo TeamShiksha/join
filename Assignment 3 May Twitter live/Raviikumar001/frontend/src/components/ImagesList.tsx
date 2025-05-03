@@ -24,28 +24,24 @@ const ImageList: React.FC<ImageProps> = ({ Images }) => {
       const data = await response.json();
       
       if (response.ok && data.downloadUrl) {
-        // Fetch the image as blob
-        const imageResponse = await fetch(data.downloadUrl);
-        const blob = await imageResponse.blob();
+        // Create a temporary anchor element
+        const link = document.createElement('a');
         
-        // Create object URL from blob
-        const url = window.URL.createObjectURL(blob);
+        // Set the href to the S3 URL
+        link.href = data.downloadUrl;
         
-        // Create download link
-        const a = document.createElement('a');
-        a.style.display = 'none';
-        a.href = url;
-        // Add file extension if not present
+        // Set download attribute with filename
         const fileName = imageName.includes('.') ? imageName : `${imageName}.png`;
-        a.download = fileName; // This will force download instead of navigation
+        link.setAttribute('download', fileName);
         
-        // Trigger download
-        document.body.appendChild(a);
-        a.click();
+        // Set specific attributes for cross-origin download
+        link.setAttribute('target', '_blank');
+        link.setAttribute('rel', 'noopener noreferrer');
         
-        // Cleanup
-        document.body.removeChild(a);
-        window.URL.revokeObjectURL(url);
+        // Append to body, click, and remove
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
       } else {
         throw new Error(data.error || 'Download failed');
       }
