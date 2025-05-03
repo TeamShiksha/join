@@ -9,16 +9,7 @@ Project Setup
 
 Clone the Repository:
 
-Bash
-```
-https://github.com/Raviikumar001/ravikumar-dobby.git
-```
-Navigate to Project Directory:
 
-Bash
-```
-cd ravikumar-dobby
-```
 Frontend Setup
 
 Change Directory:
