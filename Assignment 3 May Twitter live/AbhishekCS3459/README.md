@@ -1,8 +1,9 @@
-# 📸 Image Resizer Backend - Developer Documentation 
+# 📸 Image Resizer Backend - Developer Documentation
 
-> A Node.js + TypeScript backend service that enables users to upload images, automatically resize them to 512x512, and manage them via AWS S3. Includes features for image search, listing, and download, along with robust API documentation and Docker support.
+> A Node.js + TypeScript backend service that enables users to upload images, dynamically resize them, and manage them via AWS S3. Includes features for image search, listing, and download, along with robust API documentation and Docker support.
 
-🟢 Live Deployment: https://join-fruu.onrender.com/api-docs
+🟢 Live Deployment: [https://join-fruu.onrender.com/api-docs](https://join-fruu.onrender.com/api-docs)
+
 ---
 
 ## 🚀 Tech Stack
@@ -21,6 +22,7 @@
 ## 📁 Folder Structure
 
 ```
+
 ├── src
 │   ├── controllers          # Request handlers
 │   ├── routes               # API routes
@@ -35,6 +37,7 @@
 ├── tsconfig.json
 ├── jest.config.js
 └── package.json
+
 ```
 
 ---
@@ -45,7 +48,7 @@
 
 ```bash
 git clone https://github.com/AbhishekCS3459/join.git
-cd Assignment 3 May Twitter live/AbhishekCS3459/image-resizer-backend
+cd "Assignment 3 May Twitter live/AbhishekCS3459/image-resizer-backend"
 ```
 
 ### 2. Install Dependencies
@@ -108,7 +111,7 @@ Run unit and integration tests using Jest and Supertest:
 npm run test
 ```
 
-> Covers all critical endpoints (`/upload`, `/images`, `/download`, etc.)
+> Covers all critical endpoints (`/upload`, `/convert/:filename`, `/download/:filename`, etc.)
 
 ---
 
@@ -140,32 +143,53 @@ Use this for manual API testing:
 
 ## 📚 Available API Endpoints
 
-All APIs are also documented via Swagger.
+All APIs return a **presigned URL** for secure access to the uploaded/downloaded images.
 
 ### 1. Upload an Image
 
 `POST /upload`
-– Uploads a file via `multipart/form-data`
+Upload a file using `multipart/form-data`.
+**Response:**
 
-### 2. Resize an Image
+```json
+{
+  "message": "Image uploaded successfully",
+  "fileKey": "original/filename.jpg",
+  "fileUrl": "https://s3...",
+  "presigned_url": "https://s3...signed-url"
+}
+```
 
-`POST /convert`
-– Accepts: `{ "fileKey": "original/filename.jpg" }`
+### 2. Convert and (optionally) Resize Image
 
-### 3. List All Images
+`POST /convert/:filename`
+Request body can optionally include:
 
-`GET /images`
-– Returns metadata of all uploaded images
+```json
+{ "width": 256, "height": 256 }
+```
+
+Returns the presigned URL of the converted image.
+
+### 3. List All Uploaded Images
+
+`GET /`
+Returns an array of uploaded image metadata and presigned URLs.
 
 ### 4. Download a Resized Image
 
 `GET /download/:filename`
-– Downloads a resized image from S3
+Returns a signed URL for downloading from S3.
 
 ### 5. Search Images
 
-`GET /search?query=<name>&page=<number>`
-– Supports pagination and fuzzy search
+`GET /search?name=cat&page=1&limit=6`
+Fuzzy search with pagination support.
+
+### 6. Health Check
+
+`GET /test`
+Simple response for availability testing.
 
 ---
 
@@ -181,20 +205,19 @@ Graceful handling of common error scenarios:
 
 ## ✅ Completed Features
 
-| Feature                   | Status |
-| ------------------------- | ------ |
-| Upload to AWS S3          | ✅      |
-| Resize image to 512x512   | ✅      |
-| Download resized image    | ✅      |
-| List all uploaded images  | ✅      |
-| Search images (paginated) | ✅      |
-| Jest + Supertest Coverage | ✅      |
-| Swagger API Docs          | ✅      |
-| Docker Support            | ✅      |
+| Feature                        | Status |
+| ------------------------------ | ------ |
+| Upload to AWS S3               | ✅      |
+| Convert + Resize (custom size) | ✅      |
+| Presigned download URLs        | ✅      |
+| List all uploaded images       | ✅      |
+| Search images (paginated)      | ✅      |
+| Jest + Supertest Coverage      | ✅      |
+| Swagger API Docs               | ✅      |
+| Docker Support                 | ✅      |
 
 ---
 
-## 🧾 License
+## 📜 License
 
 This project is licensed under the **MIT License**.
-
