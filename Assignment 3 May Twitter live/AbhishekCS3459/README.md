@@ -2,7 +2,7 @@
 
 > A Node.js + TypeScript backend service that enables users to upload images, automatically resize them to 512x512, and manage them via AWS S3. Includes features for image search, listing, and download, along with robust API documentation and Docker support.
 
-🟢 Live Deployment: https://join-fruu.onrender.com
+🟢 Live Deployment: https://join-fruu.onrender.com/api-docs
 ---
 
 ## 🚀 Tech Stack
