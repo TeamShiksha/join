@@ -14,12 +14,11 @@ const app = express();
 // Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-// Enable CORS 
 app.use(cors({
-    origin: 'https://v0-vercel-ai-ui-design.vercel.app',
-    methods: ['GET', 'POST'],
-    credentials: true
-  }));
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS']
+}));
+
   
 // Routes
 app.use('/api/images', imageRoutes);
@@ -29,6 +28,10 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 // app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
 // app.use('/converted', express.static(path.join(__dirname, '..', 'converted')));
 
+app.get('/test', (req, res) => {
+    res.send('Welcome to the test api');
+}
+);
 app.get('/', (req, res) => {
     res.send('Welcome to the Image Processing API');
 }

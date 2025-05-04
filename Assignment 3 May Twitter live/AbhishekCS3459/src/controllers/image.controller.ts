@@ -19,7 +19,7 @@ export const uploadImage = async (req: Request, res: Response) => {
             ContentType: req.file.mimetype,
         }).promise();
 
-        fs.unlinkSync(req.file.path); // Delete local temp file
+        fs.unlinkSync(req.file.path); 
 
         const signedUrl = s3.getSignedUrl('getObject', {
             Bucket: process.env.AWS_BUCKET_NAME!,
@@ -39,58 +39,12 @@ export const uploadImage = async (req: Request, res: Response) => {
     }
 };
 
-// Resize image to 512x512 and upload to S3
-// export const convertImage = async (req: Request, res: Response) => {
-//     const filename = req.params.filename;
-//     const originalKey = `original/${filename}`;
-
-//     try {
-//         const originalFile = await s3.getObject({
-//             Bucket: process.env.AWS_BUCKET_NAME!,
-//             Key: originalKey,
-//         }).promise();
-
-//         const localPath = path.join('uploads', filename);
-//         fs.writeFileSync(localPath, originalFile.Body as Buffer);
-
-//         const resizedPath = await resizeTo512(localPath, filename);
-//         const resizedBuffer = fs.readFileSync(resizedPath);
-//         const convertedKey = `converted/${filename}`;
-
-//         await s3.upload({
-//             Bucket: process.env.AWS_BUCKET_NAME!,
-//             Key: convertedKey,
-//             Body: resizedBuffer,
-//             ContentType: 'image/png',
-//         }).promise();
-
-//         fs.unlinkSync(localPath);
-//         fs.unlinkSync(resizedPath);
-
-//         const signedUrl = s3.getSignedUrl('getObject', {
-//             Bucket: process.env.AWS_BUCKET_NAME!,
-//             Key: convertedKey,
-//             Expires: 3600,
-//         });
-
-//         res.status(200).json({
-//             message: 'Image converted and uploaded.',
-//             fileKey: convertedKey,
-//             presigned_url: signedUrl,
-//         });
-//     } catch (err) {
-//         console.error('Convert Error:', err);
-//         res.status(500).json({ message: 'Error converting image.' });
-//     }
-// };
-
 // Resize image to user-defined dimensions and upload to S3
 export const convertImage = async (req: Request, res: Response) => {
     const filename = req.params.filename;
     const width = parseInt(req.query.width as string) || 512;
     const height = parseInt(req.query.height as string) || 512;
     const originalKey = `original/${filename}`;
-
     try {
         const originalFile = await s3.getObject({
             Bucket: process.env.AWS_BUCKET_NAME!,
@@ -163,7 +117,7 @@ export const getUploadedImages = async (_req: Request, res: Response) => {
 // Download converted image directly (not presigned - useful for download buttons)
 export const downloadConvertedImage = async (req: Request, res: Response) => {
     const { filename } = req.params;
-    const key = `converted/${filename}`;
+    const key = `converted/${filename}` ;
 
     try {
         const image = await s3.getObject({
@@ -177,6 +131,25 @@ export const downloadConvertedImage = async (req: Request, res: Response) => {
     } catch (err) {
         console.error('Download Error:', err);
         res.status(404).json({ message: 'Converted image not found.' });
+    }
+};
+
+export const downloadOriginalImage = async (req: Request, res: Response) => {
+    const { filename } = req.params;
+    const key = `original/${filename}` ;
+
+    try {
+        const image = await s3.getObject({
+            Bucket: process.env.AWS_BUCKET_NAME!,
+            Key: key,
+        }).promise();
+
+        res.setHeader('Content-Type', 'image/png');
+        res.setHeader('Content-Disposition', `attachment; filename=${filename}`);
+        res.send(image.Body);
+    } catch (err) {
+        console.error('Download Error:', err);
+        res.status(404).json({ message: 'Original image not found.' });
     }
 };
 

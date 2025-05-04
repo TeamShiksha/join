@@ -1,6 +1,6 @@
 import express from 'express';
 import { upload } from '../middleware/upload';
-import { getUploadedImages, convertImage, uploadImage, downloadConvertedImage, searchImages, testHandler } from '../controllers/image.controller';
+import { getUploadedImages, convertImage, uploadImage, downloadConvertedImage, searchImages, testHandler, downloadOriginalImage } from '../controllers/image.controller';
 
 const router = express.Router();
 
@@ -8,7 +8,8 @@ const router = express.Router();
 router.post('/upload', upload.single('image'), uploadImage);
 router.post('/convert/:filename', convertImage);
 router.get('/', getUploadedImages);
-router.get('/download/:filename', downloadConvertedImage);
+router.get('/download/original/:filename', downloadOriginalImage);
+router.get('/download/converted/:filename', downloadConvertedImage);
 router.get('/search', searchImages);
 router.get('/test', testHandler)
 

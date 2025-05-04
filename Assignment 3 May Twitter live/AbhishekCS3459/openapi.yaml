@@ -96,7 +96,25 @@ paths:
                         presigned_url:
                           type: string
 
-  /download/{filename}:
+  /download/original/{filename}:
+    get:
+      summary: Download the original uploaded image
+      parameters:
+        - in: path
+          name: filename
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Original image file (binary)
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+
+  /download/converted/{filename}:
     get:
       summary: Download a converted image
       parameters:
@@ -107,18 +125,12 @@ paths:
             type: string
       responses:
         '200':
-          description: Converted image file
+          description: Converted image file (binary)
           content:
-            application/json:
+            application/octet-stream:
               schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                  fileKey:
-                    type: string
-                  presigned_url:
-                    type: string
+                type: string
+                format: binary
 
   /search:
     get:
