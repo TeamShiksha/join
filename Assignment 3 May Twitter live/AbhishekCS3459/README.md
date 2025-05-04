@@ -80,7 +80,7 @@ npm run build
 ### 6. Run Production Server
 
 ```bash
-node dist/server.js
+node dist/src/server.js
 ```
 
 ---
