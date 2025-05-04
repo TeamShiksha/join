@@ -3,7 +3,10 @@ import dotenv from 'dotenv';
 import imageRoutes from './routes/image.routes'
 import bodyParser from 'body-parser';
 import path from 'path';
+import swaggerUi from 'swagger-ui-express';
+import YAML from 'yamljs';
 
+const swaggerDocument = YAML.load(path.resolve(__dirname, '..', 'openapi.yaml'));
 dotenv.config();
 
 const app = express();
@@ -14,7 +17,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Routes
 app.use('/api/images', imageRoutes);
-
+// Swagger UI
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 // Serve static images (optional, for testing locally)
 app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
 app.use('/converted', express.static(path.join(__dirname, '..', 'converted')));

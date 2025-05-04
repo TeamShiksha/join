@@ -1,0 +1,152 @@
+openapi: 3.0.3
+info:
+  title: Image Processing API
+  description: API for uploading, converting, listing, downloading, and searching images using AWS S3.
+  version: 1.0.0
+servers:
+  - url: /api/images
+paths:
+  /upload:
+    post:
+      summary: Upload an image
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                image:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: Image uploaded successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  fileUrl:
+                    type: string
+                  fileKey:
+                    type: string
+
+  /convert/{filename}:
+    post:
+      summary: Convert image to 512x512 and upload
+      parameters:
+        - in: path
+          name: filename
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Image converted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  fileKey:
+                    type: string
+
+  /:
+    get:
+      summary: List all uploaded images
+      responses:
+        '200':
+          description: List of uploaded images
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  images:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        key:
+                          type: string
+                        name:
+                          type: string
+
+  /download/{filename}:
+    get:
+      summary: Download a converted image
+      parameters:
+        - in: path
+          name: filename
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Converted image file
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+
+  /search:
+    get:
+      summary: Search uploaded images
+      parameters:
+        - in: query
+          name: name
+          schema:
+            type: string
+        - in: query
+          name: page
+          schema:
+            type: integer
+            default: 1
+        - in: query
+          name: limit
+          schema:
+            type: integer
+            default: 6
+      responses:
+        '200':
+          description: Paginated image search results
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: integer
+                  page:
+                    type: integer
+                  pageSize:
+                    type: integer
+                  results:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        key:
+                          type: string
+                        name:
+                          type: string
+
+  /test:
+    get:
+      summary: Test endpoint to check if API is running
+      responses:
+        '200':
+          description: Test successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
