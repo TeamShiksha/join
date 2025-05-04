@@ -2,11 +2,11 @@ import sharp from 'sharp';
 import path from 'path';
 import fs from 'fs';
 
-export const resizeTo512 = async (inputPath: string, outputName: string): Promise<string> => {
+export const resizeImage = async (inputPath: string, outputName: string,width: number,height: number): Promise<string> => {
   const outputPath = path.join('converted', outputName);
 
   await sharp(inputPath)
-    .resize(512, 512)
+    .resize(width, height)
     .toFile(outputPath);
 
   return outputPath;

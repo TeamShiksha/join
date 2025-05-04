@@ -5,6 +5,7 @@ info:
   version: 1.0.0
 servers:
   - url: /api/images
+
 paths:
   /upload:
     post:
@@ -33,19 +34,33 @@ paths:
                     type: string
                   fileKey:
                     type: string
+                  presigned_url:
+                    type: string
 
   /convert/{filename}:
     post:
-      summary: Convert image to 512x512 and upload
+      summary: Convert image with optional resizing and upload to S3
       parameters:
         - in: path
           name: filename
           required: true
           schema:
             type: string
+        - in: query
+          name: width
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+        - in: query
+          name: height
+          required: false
+          schema:
+            type: integer
+            minimum: 1
       responses:
         '200':
-          description: Image converted successfully
+          description: Image converted and uploaded successfully
           content:
             application/json:
               schema:
@@ -54,6 +69,8 @@ paths:
                   message:
                     type: string
                   fileKey:
+                    type: string
+                  presigned_url:
                     type: string
 
   /:
@@ -76,6 +93,8 @@ paths:
                           type: string
                         name:
                           type: string
+                        presigned_url:
+                          type: string
 
   /download/{filename}:
     get:
@@ -90,14 +109,20 @@ paths:
         '200':
           description: Converted image file
           content:
-            image/png:
+            application/json:
               schema:
-                type: string
-                format: binary
+                type: object
+                properties:
+                  message:
+                    type: string
+                  fileKey:
+                    type: string
+                  presigned_url:
+                    type: string
 
   /search:
     get:
-      summary: Search uploaded images
+      summary: Search uploaded images by name
       parameters:
         - in: query
           name: name
@@ -135,6 +160,8 @@ paths:
                         key:
                           type: string
                         name:
+                          type: string
+                        presigned_url:
                           type: string
 
   /test:
