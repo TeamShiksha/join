@@ -25,9 +25,9 @@ app.use(cors({
 app.use('/api/images', imageRoutes);
 // Swagger UI
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-// Serve static images (optional, for testing locally)
-app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
-app.use('/converted', express.static(path.join(__dirname, '..', 'converted')));
+// // Serve static images (optional, for testing locally)
+// app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
+// app.use('/converted', express.static(path.join(__dirname, '..', 'converted')));
 
 app.get('/', (req, res) => {
     res.send('Welcome to the Image Processing API');
